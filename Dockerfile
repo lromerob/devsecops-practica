@@ -1,3 +1,4 @@
+# Dockerfile Seguro - Pr?ctica 4 DevSecOps
 FROM python:3.11-alpine
 
 ENV PYTHONDONTWRITEBYTECODE=1
