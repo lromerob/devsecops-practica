@@ -1,0 +1,27 @@
+﻿name: Control de Seguridad - Gitleaks SAST
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  secret-scanner:
+    name: Detectar Secretos Filtrados
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout del Código Fuente
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0 # Descarga todo el historial para auditoría estática completa
+
+    - name: Ejecutar Gitleaks con Bloqueo
+      uses: gitleaks/gitleaks-action@v2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        # 'detect' escanea los archivos actuales y el historial.
+        # '--verbose' muestra detalles si encuentra fugas.
+        args: detect --verbose
