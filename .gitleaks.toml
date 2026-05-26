@@ -1,0 +1,3 @@
+﻿[allowlist]
+description = "Permitir paths genéricos de test"
+paths = [ '''README.md''' ]
